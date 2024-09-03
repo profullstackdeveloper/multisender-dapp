@@ -219,6 +219,8 @@ export default function Body (props) {
                                                         <div>{amountList[index]}</div>
                                                     </div>
                                                 )
+                                            } else {
+                                                return null;
                                             }
                                         })    
                                     }

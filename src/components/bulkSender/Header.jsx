@@ -2,17 +2,15 @@ import React from 'react';
 import {ExpandMore} from '@material-ui/icons'
 import ChainMenu from './ChainMenu';
 import AccountMenu from './AccountMenu';
-import Web3 from 'web3';
 
 export default function Header (props) {
     const [showChainMenu, setShowChainMenu] = React.useState(false);
     const [showAccountMenu, setShowAccountMenu] = React.useState(false);
     const onClose = (value) => {
-        value == 'chain' ? setShowChainMenu(false) : setShowAccountMenu(false);
+        value === 'chain' ? setShowChainMenu(false) : setShowAccountMenu(false);
     }
 
     const connectWalletAndSetAccounts = async () => {
-        const web3 = new Web3(window.ethereum);
         await window.ethereum.request({method: 'eth_requestAccounts'});
         setShowAccountMenu(!showAccountMenu);
     }
@@ -37,7 +35,7 @@ export default function Header (props) {
                     </div>
                     <div>
                         <button className="w-[32px] h-[32px] rounded-[4px] cursor-pointer border-sky-200 border-[1px] hover:bg-gray-400 p-1" onClick={() => setShowChainMenu(!showChainMenu)}>
-                            <img src={`assets/images/${props.selectedChain}.png`}></img>
+                            <img src={`assets/images/${props.selectedChain}.png`} alt=''></img>
                         </button>
                         <div>
                             <ChainMenu isOpen={showChainMenu} {...props} onClose={onClose}></ChainMenu>
